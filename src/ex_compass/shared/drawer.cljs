@@ -3,7 +3,9 @@
   (:require [om.next :as om :refer-macros [defui]]
 ;;;            [sw.shared.react.icons :refer [ion-icon]]
             [ex-compass.shared.react.helpers :refer [drawer-nav drawer-nav-item]]
-            [ex-compass.shared.compass :refer [compass]]))
+            [ex-compass.shared.compass :refer [compass]]
+            [ex-compass.shared.tabs :refer [Home Foo About]]))
+
 
 (def styles {:header {:flex 1
                       :height 180
@@ -31,11 +33,11 @@
   Object
   (initLocalState [this]
                   (let [props (om/props this)
-                        {:keys [:routes]} props]
-                    {:routes routes}))
+                        {:keys [:config]} props]
+                    {:config config}))
 
   (render [this]
-          (let [routes (:routes (om/get-state this))]
+          (let [config (:config (om/get-state this))]
             (drawer-nav {:navigatorUID "root"
                          :renderHeader (fn [] (render-header))
                          :drawerWidth 300
@@ -48,7 +50,7 @@
                                         :renderIcon (fn [isSelected] (render-icon "md-apps" isSelected))}
 
                                        ;; (stack-nav {:id "home" :key "home" :navigatorUID "home" :initialRoute home-route})
-                                       (compass {:key "home" :routes (:home routes)}))
+                                       (compass {:key "home" :config (:home config)}))
 
                       ;; ABOUT SCENE
                       (drawer-nav-item {:id "drawer-about" :key "drawer-about"
@@ -59,7 +61,7 @@
                                        ;; (stack-nav {:id "about" :key "about" :navigatorUID "about"
                                        ;;             :initialRoute about-route
                                        ;;             :defaultRouteConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}})
-                                       (compass {:key "about" :routes (:about routes)
+                                       (compass {:key "about" :config (:about config)
                                                  :routeConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}}))
 
                       ))))

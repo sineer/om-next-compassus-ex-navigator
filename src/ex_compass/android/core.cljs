@@ -3,16 +3,10 @@
   (:require [om.next :as om :refer-macros [defui]]
             [re-natal.support :as sup]
             [ex-compass.shared.react.requires :refer [createRouter]]
-            [ex-compass.shared.react.helpers :refer [nav-provider]]
+            [ex-compass.shared.react.helpers :refer [app-registry nav-provider]]
             [ex-compass.shared.state :as state]
+            [ex-compass.shared.nav :refer [drawers-compass-config]]
             [ex-compass.shared.drawer :refer [drawer]]))
-
-
-(def routes {:home {:initialRoute :tab1 :tab1 Home :tab2 Foo}
-             :about {:initialRoute :tab2 :tab1 Foo :tab2 About}})
-
-(def app-registry (.-AppRegistry js/ReactNative))
-
 
 (defui AppRoot
   static om/IQuery
@@ -22,7 +16,7 @@
   (render [this]
           (nav-provider {:router (createRouter (fn [] #js {}))}
                         (status-bar {:key "status-bar" :hidden false :barStyle "light-content"})
-                        (drawer {:key "drawer" :routes routes}))))
+                        (drawer {:key "drawer" :config drawers-compass-config}))))
 
 (defonce RootNode (sup/root-node! 1))
 (defonce app-root (om/factory RootNode))

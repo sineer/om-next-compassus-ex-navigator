@@ -1,6 +1,7 @@
 (ns ex-compass.shared.react.helpers
   (:require [ex-compass.shared.react.requires :as rr]))
 
+(def app-registry (.-AppRegistry js/ReactNative))
 
 ;; ex-navigation
 (defn nav-provider
