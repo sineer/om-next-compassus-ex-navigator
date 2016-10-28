@@ -5,7 +5,6 @@
             [ex-compass.shared.react.requires :refer [createRouter]]
             [ex-compass.shared.react.helpers :refer [app-registry nav-provider]]
             [ex-compass.shared.state :as state]
-            [ex-compass.shared.nav :refer [drawers-compass-config]]
             [ex-compass.shared.drawer :refer [drawer]]))
 
 (defui AppRoot
@@ -16,7 +15,7 @@
   (render [this]
           (nav-provider {:router (createRouter (fn [] #js {}))}
                         (status-bar {:key "status-bar" :hidden false :barStyle "light-content"})
-                        (drawer {:key "drawer" :config drawers-compass-config}))))
+                        (drawer {:key "left-drawer"}))))
 
 (defonce RootNode (sup/root-node! 1))
 (defonce app-root (om/factory RootNode))

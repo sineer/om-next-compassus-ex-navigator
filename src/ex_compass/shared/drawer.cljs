@@ -3,6 +3,7 @@
   (:require [om.next :as om :refer-macros [defui]]
 ;;;            [sw.shared.react.icons :refer [ion-icon]]
             [ex-compass.shared.react.helpers :refer [drawer-nav drawer-nav-item]]
+            [ex-compass.shared.nav :refer [drawer->compass]]
             [ex-compass.shared.compass :refer [compass]]
             [ex-compass.shared.tabs :refer [Home Foo About]]))
 
@@ -31,11 +32,6 @@
 
 (defui Drawer
   Object
-  (initLocalState [this]
-                  (let [props (om/props this)
-                        {:keys [:config]} props]
-                    {:config config}))
-
   (render [this]
           (let [config (:config (om/get-state this))]
             (drawer-nav {:navigatorUID "root"
@@ -50,7 +46,7 @@
                                         :renderIcon (fn [isSelected] (render-icon "md-apps" isSelected))}
 
                                        ;; (stack-nav {:id "home" :key "home" :navigatorUID "home" :initialRoute home-route})
-                                       (compass {:key "home" :config (:home config)}))
+                                       (compass {:key "home" :config (drawer->compass :home)}))
 
                       ;; ABOUT SCENE
                       (drawer-nav-item {:id "drawer-about" :key "drawer-about"
@@ -61,7 +57,7 @@
                                        ;; (stack-nav {:id "about" :key "about" :navigatorUID "about"
                                        ;;             :initialRoute about-route
                                        ;;             :defaultRouteConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}})
-                                       (compass {:key "about" :config (:about config)
+                                       (compass {:key "about" :config (drawer->compass :about)
                                                  :routeConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}}))
 
                       ))))
