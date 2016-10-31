@@ -3,9 +3,8 @@
   (:require [om.next :as om :refer-macros [defui]]
 ;;;            [sw.shared.react.icons :refer [ion-icon]]
             [ex-compass.shared.react.helpers :refer [drawer-nav drawer-nav-item]]
-            [ex-compass.shared.nav :refer [drawer->compass]]
             [ex-compass.shared.compass :refer [compass]]
-            [ex-compass.shared.tabs :refer [Home Foo About]]))
+            [ex-compass.shared.tabs :refer [HomeTab AboutTab]]))
 
 
 (def styles {:header {:flex 1
@@ -46,7 +45,7 @@
                                         :renderIcon (fn [isSelected] (render-icon "md-apps" isSelected))}
 
                                        ;; (stack-nav {:id "home" :key "home" :navigatorUID "home" :initialRoute home-route})
-                                       (compass {:key "home" :config (drawer->compass :home)}))
+                                       (sight {:root HomeTab}))
 
                       ;; ABOUT SCENE
                       (drawer-nav-item {:id "drawer-about" :key "drawer-about"
@@ -57,8 +56,8 @@
                                        ;; (stack-nav {:id "about" :key "about" :navigatorUID "about"
                                        ;;             :initialRoute about-route
                                        ;;             :defaultRouteConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}})
-                                       (compass {:key "about" :config (drawer->compass :about)
-                                                 :routeConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}}))
+                                       (sight {:root AboutTab
+                                               :routeConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}}))
 
                       ))))
 

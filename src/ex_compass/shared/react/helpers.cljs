@@ -22,7 +22,17 @@
 (defn drawer-nav-item
   "..."
   [opts & children]
-  (js/React.createElement rr/DrawerNavigationItem (clj->js opts) (clj->js children)))
+  (js/React.createElement rr/TabNavigationItem (clj->js opts) (clj->js children)))
+
+(defn tab-nav
+  "..."
+  [opts & children]
+  (js/React.createElement rr/TabNavigation (clj->js opts) (clj->js children)))
+
+(defn tab-nav-item
+  "..."
+  [opts & children]
+  (js/React.createElement rr/TabNavigationItem (clj->js opts) (clj->js children)))
 
 (defn action
   "..."
