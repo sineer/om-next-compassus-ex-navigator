@@ -1,4 +1,4 @@
-(ns ex-compass.shared.drawer
+(ns ex-compass.shared.nav.drawer
   (:require-macros [natal-shell.components :refer [view text]])
   (:require [om.next :as om :refer-macros [defui]]
 ;;;            [sw.shared.react.icons :refer [ion-icon]]

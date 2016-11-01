@@ -1,25 +1,17 @@
-(ns ex-compass.ios.core
-  (:require-macros [natal-shell.components :refer [status-bar view text]])
+(ns ex-compass.android.core
   (:require [om.next :as om :refer-macros [defui]]
-            [re-natal.support :as sup]
-            [ex-compass.shared.react.requires :refer [createRouter]]
-            [ex-compass.shared.react.helpers :refer [app-registry nav-provider]]
-            [ex-compass.shared.state :as state]
-            [ex-compass.shared.drawer :refer [drawer]]))
+            [ex-compass.shared.react.helpers :refer [app-registry]]
+            [ex-compass.shared.nav.core :as nav]
+            [ex-compass.shared.nav.root :as root]))
 
 (defui AppRoot
   static om/IQuery
-  (query [_] '[:nav/root])
+  (query [_] `[:app/ios {:nav/root ~(om/query root/NavRoot)}])
 
   Object
-  (render [this]
-          (nav-provider {:router (createRouter (fn [] #js {}))}
-                        (status-bar {:key "status-bar" :hidden false :barStyle "light-content"})
-                        (drawer {:key "left-drawer"}))))
-
-(defonce RootNode (sup/root-node! 1))
-(defonce app-root (om/factory RootNode))
+  (render [this] (root/nav-root {:key "nav/root"})))
 
 (defn init []
-      (om/add-root! state/reconciler AppRoot 1)
-      (.registerComponent app-registry "Ex-Compass" (fn [] app-root)))
+  (nav/add-root! {} AppRoot 1)
+  (let [app-root (nav/app-root 1)]
+    (.registerComponent app-registry "Ex-Compass" (fn [] app-root))))
