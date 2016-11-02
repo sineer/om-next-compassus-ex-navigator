@@ -143,7 +143,7 @@ function importJs(src, success, error) {
 
     logDebug('(importJs) Importing: ' + file);
     if (isChrome()) {
-        syncImportScripts(serverBaseUrl("localhost") + '/' + file, success, error);
+        syncImportScripts(serverBaseUrl("192.168.2.123") + '/' + file, success, error);
     } else {
         asyncImportScripts(serverBaseUrl(serverHost) + '/' + file, success, error);
     }

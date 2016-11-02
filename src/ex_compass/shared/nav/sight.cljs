@@ -8,19 +8,16 @@
   Object
   (initLocalState [this]
                   (let [props (om/props this)
-                        {:keys [:config]} props
-                        routes (:routes config)
-                        index-route (:index-route config)]
-                    {:id (:id config)
-                     :routes (:routes config)
-                     :compass (:compass config)
-                     :index-route index-route}))
+                        {:keys [:id :routes]} props]
+                    {:id id
+                     :routes routes
+                     :current-route (first routes)}))
 
   (render [this]
           (let [state (om/get-state this)
                 id (:id state)
-                index-route (:index-route state)
-                factory (om/factory index-route {:keyfn :key})
+                current-route (:current-route state)
+                factory (om/factory current-route {:keyfn :key})
                 index-thunk ((fn [] (fn [] (factory {:key id}))))]
             (stack-nav {:key (str id "-nav") :navigatorUID id :initialRoute index-thunk}))))
 

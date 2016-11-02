@@ -7,20 +7,9 @@
 
 (defui NavRoot
   static om/IQuery
-  (query [_] `[{:nav/root ~(om/query nav/NavRoot)}])
+  (query [_] `[:nav/root]) ; TODO ERR !!! call om/set-query later?
 
   Object
-  ;; (initLocalState [this]
-  ;;                 {:compass (compass {key "compass"})})
-
-  ;; (componentWillMount [this]
-  ;;                     (let [c (compass {key "compass"})]
-  ;;                       (om/update-state! this assoc :compass c)))
-
-  ;; (componentWillUnmount [this]
-  ;;                       ;; Cleanup Compass ?
-  ;;                       )
-
   (render [this]
             (nav-provider {:router (createRouter (fn [] #js {}))}
                           (status-bar {:key "status-bar" :hidden false :barStyle "light-content"})

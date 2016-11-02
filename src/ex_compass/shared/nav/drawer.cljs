@@ -2,9 +2,9 @@
   (:require-macros [natal-shell.components :refer [view text]])
   (:require [om.next :as om :refer-macros [defui]]
 ;;;            [sw.shared.react.icons :refer [ion-icon]]
+            [ex-compass.shared.nav.sight :refer [sight]]
             [ex-compass.shared.react.helpers :refer [drawer-nav drawer-nav-item]]
-            [ex-compass.shared.compass :refer [compass]]
-            [ex-compass.shared.tabs :refer [HomeTab AboutTab]]))
+            [ex-compass.shared.tabs :refer [HomeNav AboutNav]]))
 
 
 (def styles {:header {:flex 1
@@ -38,25 +38,19 @@
                          :drawerWidth 300
                          :initialItem "drawer-home"}
 
-                      ;; HOME SCENE
+                      ;; HomeNav
                       (drawer-nav-item {:id "drawer-home" :key "drawer-home"
                                         :selectedStyle (:selectedItemStyle styles)
                                         :renderTitle (fn [isSelected] (render-title "Apps" isSelected))
                                         :renderIcon (fn [isSelected] (render-icon "md-apps" isSelected))}
+                                       (sight {:id "nav/home" :rouetes [:nav/home]}))
 
-                                       ;; (stack-nav {:id "home" :key "home" :navigatorUID "home" :initialRoute home-route})
-                                       (sight {:root HomeTab}))
-
-                      ;; ABOUT SCENE
+                      ;; AboutNav
                       (drawer-nav-item {:id "drawer-about" :key "drawer-about"
                                         :selectedStyle (:selectedItemStyle styles)
                                         :renderTitle (fn [isSelected] (render-title "About" isSelected))
                                         :renderIcon (fn [isSelected] (render-icon "md-jet" isSelected))}
-
-                                       ;; (stack-nav {:id "about" :key "about" :navigatorUID "about"
-                                       ;;             :initialRoute about-route
-                                       ;;             :defaultRouteConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}})
-                                       (sight {:root AboutTab
+                                       (sight {:id "nav/about" :routes [:nav/about]
                                                :routeConfig {:navigationBar {:backgroundColor "#0084FF" :tintColor "#FFF"}}}))
 
                       ))))

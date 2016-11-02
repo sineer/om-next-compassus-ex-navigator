@@ -19,14 +19,14 @@
                              :source-paths ["src" "env/dev"]
                              :cljsbuild    {:builds [{:id           "ios"
                                                       :source-paths ["src" "env/dev"]
-                                                      :figwheel     true
+                                                      :figwheel     {:websocket-host "192.168.2.123"}
                                                       :compiler     {:output-to     "target/ios/not-used.js"
                                                                      :main          "env.ios.main"
                                                                      :output-dir    "target/ios"
                                                                      :optimizations :none}}
                                                      {:id           "android"
                                                       :source-paths ["src" "env/dev"]
-                                                      :figwheel     true
+                                                      :figwheel     {:websocket-host "192.168.2.123"}
                                                       :compiler     {:output-to     "target/android/not-used.js"
                                                                      :main          "env.android.main"
                                                                      :output-dir    "target/android"

@@ -1,8 +1,7 @@
 (ns ex-compass.shared.react.requires)
 
-
-(set! js/window.React (js/require "react"))
-(def ReactNative (js/require "react-native"))
+(set! js/React (js/require "react"))
+(set! js/ReactNative (js/require "react-native"))
 
 ;; @exponent/ex-navigation
 (defonce ExNavigation (js/require "@exponent/ex-navigation"))

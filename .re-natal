@@ -1,7 +1,7 @@
 {
   "name": "Compass",
   "interface": "om-next",
-  "androidHost": "localhost",
+  "androidHost": "192.168.2.123",
   "iosHost": "localhost",
   "envRoots": {
     "dev": "env/dev",
